@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
+"""
 AirBnB_clone_v3 application api
-'''
+"""
 import os
 from flask import Flask, jsonify, Response
 from flask_cors import CORS
