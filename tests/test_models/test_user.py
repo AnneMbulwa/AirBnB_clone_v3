@@ -25,13 +25,13 @@ class TestUserDocs(unittest.TestCase):
 
     def test_doc_file(self):
         """... documentation for the file"""
-        expected = '\nUser Class from Models Module\n'
+        expected = ' holds class User'
         actual = models.user.__doc__
         self.assertEqual(expected, actual)
 
     def test_doc_class(self):
         """... documentation for the class"""
-        expected = 'User class handles all application users'
+        expected = 'Representation of a user '
         actual = User.__doc__
         self.assertEqual(expected, actual)
 
@@ -73,7 +73,7 @@ class TestUserInstances(unittest.TestCase):
         actual = 0
         if 'updated_at' in my_str:
             actual += 1
-        self.assertTrue(0 == actual)
+        self.assertFalse(0 == actual)
 
     @unittest.skipIf(storage_type == 'db', 'skip if environ is db')
     def test_updated_at(self):

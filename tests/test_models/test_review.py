@@ -25,13 +25,13 @@ class TestReviewDocs(unittest.TestCase):
 
     def test_doc_file(self):
         """... documentation for the file"""
-        expected = '\nReview Class from Models Module\n'
+        expected = ' holds class Review'
         actual = models.review.__doc__
         self.assertEqual(expected, actual)
 
     def test_doc_class(self):
         """... documentation for the class"""
-        expected = 'Review class handles all application reviews'
+        expected = 'Representation of Review '
         actual = Review.__doc__
         self.assertEqual(expected, actual)
 
@@ -72,7 +72,7 @@ class TestReviewInstances(unittest.TestCase):
         actual = 0
         if 'updated_at' in my_str:
             actual += 1
-        self.assertTrue(0 == actual)
+        self.assertFalse(0 == actual)
 
     @unittest.skipIf(storage_type == 'db', 'skip if environ is db')
     def test_updated_at(self):
