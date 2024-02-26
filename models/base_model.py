@@ -58,6 +58,30 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
+    def __is_serializable(self, obj_v):
+        """
+        private: checks if object is serializable
+        """
+        try:
+            obj_to_str = json.dumps(obj_v)
+            return obj_to_str is not None and isinstance(obj_to_str, str)
+        except Exception:
+            return False
+
+    def to_json(self):
+        """returns json representation of self"""
+        bm_dict = {}
+        for key, value in (self.__dict__).items():
+            if key == '_sa_instance_state':
+                del key
+                continue
+            if (self.__is_serializable(value)):
+                bm_dict[key] = value
+            else:
+                bm_dict[key] = str(value)
+        bm_dict['__class__'] = type(self).__name__
+        return(bm_dict)
+
     def to_dict(self):
         """returns a dictionary containing all keys/values of the instance"""
         new_dict = self.__dict__.copy()
