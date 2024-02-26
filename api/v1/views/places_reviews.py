@@ -49,7 +49,7 @@ def create_review(place_id):
     if not request.get_json():
         abort(400, "Not a JSON")
 
-   x_ data = request.get_json()
+    x_data = request.get_json()
     if 'user_id' not in x_data:
         abort(400, "Missing user_id")
     if 'text' not in x_data:
@@ -76,7 +76,8 @@ def update_review(review_id):
 
     data = request.get_json()
     for key, value in data.items():
-        if key not in ['id', 'user_id', 'place_id', 'created_at', 'updated_at']:
+        cont = ['id', 'user_id', 'place_id', 'created_at', 'updated_at']
+        if key not in cont:
             setattr(review, key, value)
 
     storage.save()

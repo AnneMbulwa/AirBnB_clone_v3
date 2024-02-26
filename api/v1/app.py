@@ -29,11 +29,11 @@ def page_not_found(e):
 if __name__ == '__main__':
     try:
         host = os.environ.get('HBNB_API_HOST')
-    except:
+    except Exception:
         host = '0.0.0.0'
     try:
         port = os.environ.get('HBNB_API_PORT')
-    except:
+    except Exception:
         port = '5000'
 
     app.run(host=host, port=port, threaded=True)
