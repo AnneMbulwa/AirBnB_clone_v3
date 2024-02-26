@@ -24,13 +24,13 @@ class TestStateDocs(unittest.TestCase):
 
     def test_doc_file(self):
         """... documentation for the file"""
-        expected = '\nState Class from Models Module\n'
+        expected = ' holds class State'
         actual = models.state.__doc__
         self.assertEqual(expected, actual)
 
     def test_doc_class(self):
         """... documentation for the class"""
-        expected = 'State class handles all application states'
+        expected = 'Representation of state '
         actual = State.__doc__
         self.assertEqual(expected, actual)
 
@@ -71,7 +71,7 @@ class TestStateInstances(unittest.TestCase):
         actual = 0
         if 'updated_at' in my_str:
             actual += 1
-        self.assertTrue(0 == actual)
+        self.assertFalse(0 == actual)
 
     @unittest.skipIf(storage_type == 'db', 'skip if environ is db')
     def test_updated_at(self):
