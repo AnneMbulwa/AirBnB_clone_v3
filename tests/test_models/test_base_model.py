@@ -36,10 +36,10 @@ class TestBaseModelDocs(unittest.TestCase):
 
     def test_doc_save(self):
         """... documentation for save function"""
-        expected = "updates the attribute 'updated_at'\
-        with the current datetime"
+        expec = "updates the attribute 'updated_at' "
+        ted = "with the current datetime"
         actual = BaseModel.save.__doc__
-        self.assertEqual(expected, actual)
+        self.assertEqual(expec + ted, actual)
 
     def test_doc_to_json(self):
         """... documentation for to_json function"""
