@@ -80,7 +80,7 @@ class FileStorage:
             return len(obj_list)
         else:
             obj_list = []
-            for class_name in self.CNC:
+            for class_name in classes:
                 if class_name == 'BaseModel':
                     continue
                 obj_class = FileStorage.__objects
