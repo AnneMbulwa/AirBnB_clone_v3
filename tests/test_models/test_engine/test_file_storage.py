@@ -78,6 +78,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(new_dict), dict)
         self.assertIs(new_dict, storage._FileStorage__objects)
 
+    @unittest.skipIf(models.storage_t != 'db', "not testing file storage")
     def test_new(self):
         """test that new adds an object to the FileStorage.__objects attr"""
         storage = FileStorage()
@@ -93,6 +94,7 @@ class TestFileStorage(unittest.TestCase):
                 self.assertEqual(test_dict, storage._FileStorage__objects)
         FileStorage._FileStorage__objects = save
 
+    @unittest.skipIf(models.storage_t != 'db', "not testing file storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
         storage = FileStorage()
@@ -112,7 +114,7 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def test_new(self):
         """Test that new adds an object to the database"""
         state = State(name="New York")
@@ -124,7 +126,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(state.id, rd_state.id)
         self.assertEqual(state.name, rd_state.name)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t == 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to the database"""
         state = State(name="Florida")
