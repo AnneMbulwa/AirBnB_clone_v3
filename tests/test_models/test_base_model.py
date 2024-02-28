@@ -36,9 +36,10 @@ class TestBaseModelDocs(unittest.TestCase):
 
     def test_doc_save(self):
         """... documentation for save function"""
-        expected = "updates the attribute 'updated_at' with the current datetime"
+        expec = "updates the attribute 'updated_at' "
+        ted = "with the current datetime"
         actual = BaseModel.save.__doc__
-        self.assertEqual(expected, actual)
+        self.assertEqual(expec + ted, actual)
 
     def test_doc_to_json(self):
         """... documentation for to_json function"""
@@ -117,7 +118,7 @@ class TestBaseModelInstances(unittest.TestCase):
         actual = 1
         try:
             serialized = json.dumps(my_model_json)
-        except:
+        except Exception:
             actual = 0
         self.assertTrue(1 == actual)
 
@@ -143,6 +144,7 @@ class TestBaseModelInstances(unittest.TestCase):
         self.model.number = 98
         actual = self.model.number
         self.assertTrue(98 == actual)
+
 
 if __name__ == '__main__':
     unittest.main
